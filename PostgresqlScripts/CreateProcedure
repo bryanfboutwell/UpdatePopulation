@@ -1,0 +1,12 @@
+ CREATE OR REPLACE FUNCTION InsertUpdateStatePopulation(p_StateAbbreviation CHAR(2), p_Population BIGINT) 
+    RETURNS void as $$
+    BEGIN
+      IF EXISTS (SELECT 1 FROM public."StatePopulation" WHERE "StateAbbreviation" = p_StateAbbreviation)
+      	THEN UPDATE public."StatePopulation"
+        	SET "Population" = p_Population
+            WHERE "StateAbbreviation" = p_StateAbbreviation;
+        ELSE
+        	INSERT INTO public."StatePopulation" ("StateAbbreviation", "Population") VALUES (p_StateAbbreviation, p_Population);
+           END IF;
+    END;
+    $$ LANGUAGE plpgsql;
