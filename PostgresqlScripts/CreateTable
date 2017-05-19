@@ -1,0 +1,17 @@
+-- Table: public."StatePopulation"
+
+-- DROP TABLE public."StatePopulation";
+
+CREATE TABLE public."StatePopulation"
+(
+    "StateAbbreviation" character varying(2) COLLATE pg_catalog."default" NOT NULL,
+    "Population" bigint,
+    CONSTRAINT "StatePopulation_pkey" PRIMARY KEY ("StateAbbreviation")
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."StatePopulation"
+    OWNER to postgres;
